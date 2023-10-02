@@ -1,21 +1,85 @@
-# Development environments driven by Nix flakes
+# Nix flake templates for easy dev environments
 
-| Language/framework/tool | Project               |
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
+To initialize (where `${ENV}` is listed in the table below):
+
+```shell
+nix flake init --template github:the-nix-way/dev-templates#${ENV}
+```
+
+Here's an example (for the [`rust`](./rust) template):
+
+```shell
+# Initialize in the current project
+nix flake init --template github:iancleary/dev-templates#rust
+
+# Create a new project
+nix flake new --template github:iancleary/dev-templates#rust ${NEW_PROJECT_DIRECTORY}
+```
+
+## How to use the templates
+
+Once your preferred template has been initialized, you can use the provided shell in two ways:
+
+1. If you have [`nix-direnv`][nix-direnv] installed, you can initialize the environment by running `direnv allow`.
+2. If you don't have `nix-direnv` installed, you can run `nix develop` to open up the Nix-defined shell.
+
+## Available templates
+
+| Language/framework/tool | Template              |
 | :---------------------- | :-------------------- |
 | [Node.js][node]         | [`node`](./node/)     |
 | [Python]                | [`python`](./python/) |
 | [Rust]                  | [`rust`](./rust/)     |
 
-## Revisions
+## Template contents
 
-| Input                                                                    | Revision                                                                                                                            |
-| :----------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| [`github:NixOS/nixpkgs`](https://github.com/NixOS/nixpkgs)               | [`0c19eb6916ade1024700a42ef72ba69656053f3c`](https://github.com/NixOS/nixpkgs/tree/0c19eb6916ade1024700a42ef72ba69656053f3c)        |
-| [`github:numtide/flake-utils`](https://github.com/numtide/flake-utils)   | [`ff7b65b44d01cf9ba6a71320833626af21126384`](https://github.com/numtide/flake-utils/tree/ff7b65b44d01cf9ba6a71320833626af21126384)  |
-| [`github:oxalica/rust-overlay`](https://github.com/oxalica/rust-overlay) | [`1aaa2dc3e7367f2014f939c927e9e768a0cc2f08`](https://github.com/oxalica/rust-overlay/tree/1aaa2dc3e7367f2014f939c927e9e768a0cc2f08) |
+The sections below list what each template includes. In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.
 
-[flakes]: https://nixos.wiki/wiki/Flakes
-[nix]: https://nixos.org
+### [`node`](./node/)
+
+- [Node.js][node] 18.16.1
+- [npm] 9.5.1
+- [pnpm] 8.6.6
+- [Yarn] 1.22.19
+- [node2nix] 1.11.1
+
+### [`python`](./python/)
+
+- [Python] 3.11.4
+- [pip] 23.0.1
+- [Virtualenv] 20.19.0
+
+### [`rust`](./rust/)
+
+- [Rust], including [cargo], [Clippy], and the other standard tools. The Rust version is determined as follows, in order:
+
+  - From the `rust-toolchain.toml` file if present
+  - From the `rust-toolchain` file if present
+  - Version 1.70.0 if neither is present
+
+- [rust-analyzer] 2023-07-10
+- [cargo-audit] 0.17.0
+- [cargo-deny] 0.12.1
+
+## Code organization
+
+All of the templates have only the root [flake](./flake.nix) as a flake input. That root flake provides a common revision of [Nixpkgs] and [`flake-utils`][flake-utils] to all the templates.
+
+[cargo]: https://doc.rust-lang.org/cargo
+[cargo-audit]: https://crates.io/crates/cargo-audit
+[cargo-deny]: https://crates.io/crates/cargo-deny
+[clippy]: https://github.com/rust-lang/rust-clippy
+[flake-utils]: https://github.com/numtide/flake-utils
+[nix-direnv]: https://github.com/nix-community/nix-direnv
+[nixpkgs]: https://github.com/NixOS/nixpkgs
 [node]: https://nodejs.org
+[node2nix]: https://github.com/svanderburg/node2nix
+[npm]: https://npmjs.org
+[pip]: https://pypi.org/project/pip
+[pnpm]: https://pnpm.io
 [python]: https://python.org
 [rust]: https://rust-lang.org
+[rust-analyzer]: https://rust-analyzer.github.io
+[virtualenv]: https://pypi.org/project/virtualenv

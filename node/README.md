@@ -15,7 +15,7 @@ pnpm install
 To use the Node.js environment without checking out this repo:
 
 ```shell
-nix develop 'github:iancleary/dev-environments?dir=node'
+nix flake init --template github:iancleary/dev-templates#node
 ```
 
 [node]: https://nodejs.org
