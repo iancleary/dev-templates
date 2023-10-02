@@ -10,11 +10,9 @@
 
 | Input                                                                    | Revision                                                                                                                            |
 | :----------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| [`github:NixOS/nixpkgs`](https://github.com/NixOS/nixpkgs)               | [`8937eaacc0b2bd5a365943fd959adb3cad56ad73`](https://github.com/NixOS/nixpkgs/tree/8937eaacc0b2bd5a365943fd959adb3cad56ad73)        |
-| [`github:numtide/flake-utils`](https://github.com/numtide/flake-utils)   | [`bee6a7250dd1b01844a2de7e02e4df7d8a0a206c`](https://github.com/numtide/flake-utils/tree/bee6a7250dd1b01844a2de7e02e4df7d8a0a206c)  |
-| [`github:oxalica/rust-overlay`](https://github.com/oxalica/rust-overlay) | [`3e95d6696b51f88b3ebfc7a21aefaeeb70a245bd`](https://github.com/oxalica/rust-overlay/tree/3e95d6696b51f88b3ebfc7a21aefaeeb70a245bd) |
-
-The GitPod environment has [Nix] installed and [flakes] enabled.
+| [`github:NixOS/nixpkgs`](https://github.com/NixOS/nixpkgs)               | [`0c19eb6916ade1024700a42ef72ba69656053f3c`](https://github.com/NixOS/nixpkgs/tree/0c19eb6916ade1024700a42ef72ba69656053f3c)        |
+| [`github:numtide/flake-utils`](https://github.com/numtide/flake-utils)   | [`ff7b65b44d01cf9ba6a71320833626af21126384`](https://github.com/numtide/flake-utils/tree/ff7b65b44d01cf9ba6a71320833626af21126384)  |
+| [`github:oxalica/rust-overlay`](https://github.com/oxalica/rust-overlay) | [`1aaa2dc3e7367f2014f939c927e9e768a0cc2f08`](https://github.com/oxalica/rust-overlay/tree/1aaa2dc3e7367f2014f939c927e9e768a0cc2f08) |
 
 [flakes]: https://nixos.wiki/wiki/Flakes
 [nix]: https://nixos.org
