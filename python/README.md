@@ -15,5 +15,5 @@ python ./main.py
 To use the Python environment without checking out this repo:
 
 ```shell
-nix develop 'github:the-nix-way/nix-flake-dev-environments?dir=python'
+nix develop 'github:iancleary/dev-environments?dir=python'
 ```

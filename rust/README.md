@@ -24,7 +24,7 @@ cargo build --release
 To use the Rust environment without checking out this repo:
 
 ```shell
-nix develop 'github:the-nix-way/nix-flake-dev-environments?dir=rust'
+nix develop 'github:iancleary/dev-environments?dir=python'
 ```
 
 [cargo]: https://crates.io/

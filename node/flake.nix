@@ -1,31 +1,27 @@
 {
-  description = "A Nix-flake-based Go development environment";
+  description = "A Nix-flake-based Node.js development environment";
 
-  # GitHub URLs for the Nix inputs we're using
-  inputs = {
-    # Simply the greatest package repository on the planet
-    nixpkgs.url = "github:NixOS/nixpkgs";
-    # A set of helper functions for using flakes
-    flake-utils.url = "github:numtide/flake-utils";
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-
-        node = pkgs.nodejs_latest;
-      in {
-        devShells = {
-          default = pkgs.mkShell {
-            # Packages included in the environment
-            buildInputs = [ node ];
-
-            # Run when the shell is started up
-            shellHook = ''
-              echo "node `${node}/bin/node --version`"
-            '';
-          };
+  outputs = { self, nixpkgs }:
+    let
+      overlays = [
+        (final: prev: rec {
+          nodejs = prev.nodejs-18_x;
+          pnpm = prev.nodePackages.pnpm;
+          yarn = (prev.yarn.override { inherit nodejs; });
+        })
+      ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
+        pkgs = import nixpkgs { inherit overlays system; };
+      });
+    in
+    {
+      devShells = forEachSupportedSystem ({ pkgs }: {
+        default = pkgs.mkShell {
+          packages = with pkgs; [ node2nix nodejs pnpm yarn ];
         };
       });
+    };
 }

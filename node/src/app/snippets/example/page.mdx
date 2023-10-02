@@ -1,0 +1,58 @@
+import { ArticleLayout } from "@/components/ArticleLayout";
+import ArchitectureContainersImage from "./ArchitectureContainers";
+
+export const meta = {
+  author: "Ian Cleary",
+  date: "2023-07-02",
+  title: "Example Article",
+  category: "Virtualization",
+  description:
+    "An example descriptive sentence that wows the reader and makes them want to read more.",
+  isPublished: true,
+};
+
+export default (props) => <ArticleLayout meta={meta} {...props} />;
+
+> Never gonna give you up, never gonna let you down, never gonna run around and desert you.
+
+<ArchitectureContainersImage />
+
+`exampleFolder/example.json`
+
+```json
+{
+  "name": "nix-is-the-way"
+}
+```
+
+> Notes:
+>
+> - The `service` name is also present in the `docker-compose.devcontainer.yml` file.
+> - The `name` appears in the user interface of the VS Code Client in the bottom left corner.
+
+`.yamlWorkToo/docker-compose.yml`
+
+```yaml
+version: "3"
+services:
+  iancleary-me:
+    image: "ghcr.io/iancleary/devcontainer:v0.0.18"
+    volumes:
+      # paths are relative to the first docker-compose
+      # in the list in devcontainer.json
+      # since this is the only file in that list,
+      # this mounts the project folder (up one level)
+      # to '/workspace'.
+      - ..:/workspace:cached
+
+    # [Optional] Required for ptrace-based debuggers
+    # like C++, Go, and Rust
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+
+    # Overrides default command so things
+    # don't shut down after the process ends.
+    command: /bin/sh -c "while sleep 1000; do :; done"
+```
