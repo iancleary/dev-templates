@@ -14,24 +14,32 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
+        # task runner
         just = pkgs.just;
-        python = pkgs.python311;
-        # pip = pkgs.python311Packages.pip;
-        # virtualenv = pkgs.python311Packages.virtualenv;
 
-        # pythonTools = [pip virtualenv];
+        # Python 3.11
+        python = pkgs.python311;
+
+        # Run python packages in a isolated environment
+        pipx = pkgs.python311Packages.pipx;
+
+        # Python tools, as a list
+        pythonTools = [ python pipx];
       in {
         devShells = {
           default = pkgs.mkShell {
             # Packages included in the environment
-            buildInputs = [ python just ]; # ++ pythonTools;
+            buildInputs = [ just ] ++ pythonTools;
 
             # Run when the shell is started up
             shellHook = ''
               ${python}/bin/python --version
               ${python}/bin/python -m venv .venv
               source .venv/bin/activate
-              pip install pdm
+              export PIPX_HOME=.venv/pipx
+              export PIPX_BIN_DIR=.venv/bin
+              echo "pipx $(pipx --version)"
+              pipx install pdm
               pdm --version
               pdm install
             '';
