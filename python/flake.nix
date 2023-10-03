@@ -23,13 +23,13 @@
         # Run python packages in a isolated environment
         pipx = pkgs.python311Packages.pipx;
 
-
-        pythonTools = [pipx];
+        # Python tools, as a list
+        pythonTools = [ python pipx];
       in {
         devShells = {
           default = pkgs.mkShell {
             # Packages included in the environment
-            buildInputs = [ python just ] ++ pythonTools;
+            buildInputs = [ just ] ++ pythonTools;
 
             # Run when the shell is started up
             shellHook = ''
