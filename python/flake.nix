@@ -14,11 +14,15 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
+        # task runner
         just = pkgs.just;
+
+        # Python 3.11
         python = pkgs.python311;
-        # pip = pkgs.python311Packages.pip;
-        # virtualenv = pkgs.python311Packages.virtualenv;
+
+        # Run python packages in a isolated environment
         pipx = pkgs.python311Packages.pipx;
+
 
         pythonTools = [pipx];
       in {
