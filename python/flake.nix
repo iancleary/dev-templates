@@ -43,6 +43,14 @@
               pdm --version
               pdm install
             '';
+
+            # https://pypa.github.io/pipx/docs/
+            # optional environment variables:
+            #   PIPX_HOME             Overrides default pipx location. Virtual Environments
+            #                         will be installed to $PIPX_HOME/venvs.
+            #   PIPX_BIN_DIR          Overrides location of app installations. Apps are
+            #                         symlinked or copied here.
+            #
           };
         };
       });
