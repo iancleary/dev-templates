@@ -18,20 +18,24 @@
         python = pkgs.python311;
         # pip = pkgs.python311Packages.pip;
         # virtualenv = pkgs.python311Packages.virtualenv;
+        pipx = pkgs.python311Packages.pipx;
 
-        # pythonTools = [pip virtualenv];
+        pythonTools = [pipx];
       in {
         devShells = {
           default = pkgs.mkShell {
             # Packages included in the environment
-            buildInputs = [ python just ]; # ++ pythonTools;
+            buildInputs = [ python just ] ++ pythonTools;
 
             # Run when the shell is started up
             shellHook = ''
               ${python}/bin/python --version
               ${python}/bin/python -m venv .venv
               source .venv/bin/activate
-              pip install pdm
+              export PIPX_HOME=.venv/pipx
+              export PIPX_BIN_DIR=.venv/bin
+              echo "pipx $(pipx --version)"
+              pipx install pdm
               pdm --version
               pdm install
             '';
