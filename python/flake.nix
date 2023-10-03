@@ -7,7 +7,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     # A set of helper functions for using flakes
     flake-utils.url = "github:numtide/flake-utils";
-    mach-nix.url = "github:DavHau/mach-nix";
   };
 
   outputs = { self, nixpkgs, flake-utils, mach-nix }:
@@ -15,30 +14,28 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        python = pkgs.python39;
+        just = pkgs.just;
+        python = pkgs.python311;
+        # pip = pkgs.python311Packages.pip;
+        # virtualenv = pkgs.python311Packages.virtualenv;
 
-        pythonEnv = mach-nix.lib.${system}.mkPython {
-          requirements = builtins.readFile ./requirements.txt;
-        };
-
-        pythonTools = with pkgs.python39Packages; [ pip virtualenv ];
+        # pythonTools = [pip virtualenv];
       in {
         devShells = {
           default = pkgs.mkShell {
             # Packages included in the environment
-            buildInputs = [ pythonEnv ] ++ pythonTools;
+            buildInputs = [ python just ]; # ++ pythonTools;
 
             # Run when the shell is started up
             shellHook = ''
               ${python}/bin/python --version
+              ${python}/bin/python -m venv .venv
+              source .venv/bin/activate
+              pip install pdm
+              pdm --version
+              pdm install
             '';
           };
-        };
-
-        packages = { venv = pythonEnv; };
-
-        defaultPackage = mach-nix.lib.${system}.mkPythonShell {
-          requirements = builtins.readFile ./requirements.txt;
         };
       });
 }

@@ -1,0 +1,1 @@
+pnpm list --dev | grep "@playwright/test" | sed 's/@playwright\/test //g'
