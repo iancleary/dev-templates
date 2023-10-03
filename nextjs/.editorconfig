@@ -13,12 +13,12 @@ insert_final_newline = true
 indent_style = space
 indent_size = 4
 
-[{justfile,*.py}]
+[{Makefile,*.go,*.py}]
 indent_style = tab
 indent_size = 4
 
 [*.lock]
 insert_final_newline = false
 
-[.python-version]
+[.ruby-version]
 insert_final_newline = false
