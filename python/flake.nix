@@ -40,8 +40,11 @@
               export PIPX_BIN_DIR=.venv/bin
               echo "pipx $(pipx --version)"
               pipx install pdm
+              pipx install pre-commit
               pdm --version
               pdm install
+              pre-commit --version
+              pre-commit install
             '';
 
             # https://pypa.github.io/pipx/docs/
