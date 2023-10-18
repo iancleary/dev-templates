@@ -3,9 +3,14 @@
 
   outputs = { self }: {
     templates = rec {
-      node = {
-        path = ./node;
-        description = "Node.js development environment";
+      nextjs = {
+        path = ./nextjs;
+        description = "Nodejs development environment template for nextjs";
+      };
+
+      pnpm = {
+        path = ./pnpm;
+        description = "Nodejs development environment for only pnpm";
       };
 
       python = {
