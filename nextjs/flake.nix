@@ -7,7 +7,6 @@
     let
       overlays = [
         (final: prev: rec {
-          nodejs = prev.nodejs-18_x;
           pnpm = prev.nodePackages.pnpm;
         })
       ];
@@ -19,7 +18,7 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = with pkgs; [ nodejs pnpm ];
+          packages = with pkgs; [ pnpm ];
         };
       });
     };
