@@ -2,10 +2,20 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
+## Credit and Inspiration
+
+> Credit and inspiration for this repo comes from https://github.com/the-nix-way/dev-templates
+>
+> These templates are derived, from their work, for our use cases.  We have learned alot!
+>
+> We also recommend https://determinate.systems/posts/nix-github-actions for continued reading.
+
+## Getting Started
+
 To initialize (where `${ENV}` is listed in the table below):
 
 ```shell
-nix flake init --template github:the-nix-way/dev-templates#${ENV}
+nix flake init --template github:iancleary/dev-templates#${ENV}
 ```
 
 Here's an example (for the [`rust`](./rust) template):
