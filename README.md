@@ -39,7 +39,7 @@ Once your preferred template has been initialized, you can use the provided shel
 
 | Language/framework/tool | Template              |
 | :---------------------- | :-------------------- |
-| [Node.js][node]         | [`node`](./node/)     |
+| [Node.js][node]         | [`pnpm`](./pnpm/)     |
 | [Python]                | [`python`](./python/) |
 | [Rust]                  | [`rust`](./rust/)     |
 
@@ -47,13 +47,12 @@ Once your preferred template has been initialized, you can use the provided shel
 
 The sections below list what each template includes. In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.
 
-### [`node`](./node/)
+### [`pnpm`](./pnpm/)
 
 - [Node.js][node] 18.16.1
 - [npm] 9.5.1
 - [pnpm] 8.6.6
-- [Yarn] 1.22.19
-- [node2nix] 1.11.1
+
 
 ### [`python`](./python/)
 
@@ -67,7 +66,7 @@ The sections below list what each template includes. In all cases, you're free t
 
   - From the `rust-toolchain.toml` file if present
   - From the `rust-toolchain` file if present
-  - Version 1.70.0 if neither is present
+  - Version 1.73.0 if neither is present
 
 - [rust-analyzer] 2023-07-10
 - [cargo-audit] 0.17.0
