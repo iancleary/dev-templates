@@ -35,14 +35,10 @@ yarn-error.log*
 next-env.d.ts
 
 # nix
+.devbox/
 .direnv/
 
 # playwright
 /test-results/
 /playwright-report/
 /playwright/.cache/
-
-# rss
-public/rss/
-public/snippets/
-public/tutorials/
