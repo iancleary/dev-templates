@@ -19,3 +19,11 @@ test:
 
 # Lint and then test targets (like CI does)
 ci: lint test build
+
+# build the app with podmand
+image:
+  podman build . -t iancleary.me/rust/app
+
+# Run the docker Image
+run:
+  podman run iancleary.me/rust/app
