@@ -3,11 +3,6 @@
 
   outputs = { self }: {
     templates = rec {
-      nextjs = {
-        path = ./nextjs;
-        description = "Nodejs development environment template for nextjs";
-      };
-
       pnpm = {
         path = ./pnpm;
         description = "Nodejs development environment for only pnpm";
