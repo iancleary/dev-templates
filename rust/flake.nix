@@ -34,7 +34,9 @@
 
             # Run when the shell is started up
             shellHook = ''
-              ${localRust}/bin/cargo --version
+              which_cargo=$(which cargo)
+              cargo_version=$(cargo --version)
+              echo "cargo version: $which_cargo ($cargo_version)"
             '';
           };
         };
