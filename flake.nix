@@ -3,14 +3,15 @@
 
   outputs = { self }: {
     templates = rec {
+      
+      graphite = {
+        path = ./dev-tools;
+        description = "Development tools common to using ";
+      };
+      
       pnpm = {
         path = ./pnpm;
         description = "Nodejs development environment for only pnpm";
-      };
-
-      python = {
-        path = ./python;
-        description = "Python development environment";
       };
 
       rust = {

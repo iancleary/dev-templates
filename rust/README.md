@@ -1,30 +1,18 @@
 # Rust dev environment
 
+# Tooling to use with app.graphite.dev, git, and github.com
+
 Open up the provided Nix shell:
 
 ```shell
-nix develop --ignore-environment
+echo "use flake \"github:iancleary/dev-templates?dir=rust\"" >> .envrc
+direnv allow
 ```
 
-Once inside the shell, you can run standard [Cargo] commands:
+Once inside the shell, you can run standard [cargo] commands:
 
 ```shell
-# Run the main.rs executable
-cargo run
-
-# Build and run
-cargo build
-./target/debug/nix-flakes-rust
-
-# Build and run a release
-cargo build --release
-./target/release/nix-flakes-rust
-```
-
-To use the Rust environment without checking out this repo:
-
-```shell
-nix flake init --template github:iancleary/dev-templates#rust
+cargo --help
 ```
 
 [cargo]: https://crates.io/

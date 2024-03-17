@@ -3,7 +3,8 @@
 Open up the provided Nix shell:
 
 ```shell
-nix develop --ignore-environment
+echo "use flake \"github:iancleary/dev-templates?dir=pnpm\"" >> .envrc
+direnv allow
 ```
 
 Once inside the shell, you can run standard [pnpm] commands:
@@ -12,10 +13,16 @@ Once inside the shell, you can run standard [pnpm] commands:
 pnpm install
 ```
 
-To use the [pnpm] environment without checking out this repo:
-
 ```shell
-nix flake init --template github:iancleary/dev-templates#pnpm
+pnpm exec husky install
+```
+
+> Only allow pnpm to be used in the project by adding the following to the `package.json`:
+
+```json
+ "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
 ```
 
 [pnpm]: https://pnpm.io

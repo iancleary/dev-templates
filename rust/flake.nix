@@ -9,8 +9,6 @@
     flake-utils.url = "github:numtide/flake-utils";
     # A utility library for working with Rust
     rust-overlay.url = "github:oxalica/rust-overlay";
-    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    rust-overlay.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = { self, nixpkgs, flake-utils, rust-overlay }:
@@ -20,29 +18,19 @@
           # This overlay adds the "rust-bin" package to nixpkgs
           (import rust-overlay)
         ];
-
         # System-specific nixpkgs with rust-overlay applied
-        pkgs = import nixpkgs { inherit system overlays; };
-
+        pkgs = import nixpkgs {
+          inherit system overlays;
+          config = { allowUnfree = true; };
+        };
         # Use the specific version of the Rust toolchain specified by the toolchain file
         localRust = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-
-        # Cargo subcommands commonly used in Rust projects
-        cargoSubCommands = with pkgs; [
-          cargo-audit
-          cargo-edit
-          cargo-release
-          cargo-watch
-        ];
-
-        # Placeholder for utilities commonly used in Rust projects (but not in this example project)
-        others = with pkgs; [ ];
 
       in {
         devShells = {
           default = pkgs.mkShell {
             # Packages included in the environment
-            buildInputs = [ localRust ] ++ cargoSubCommands ++ others;
+            buildInputs = [ localRust ];
 
             # Run when the shell is started up
             shellHook = ''
