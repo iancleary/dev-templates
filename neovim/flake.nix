@@ -28,8 +28,6 @@
 
             # Run when the shell is started up
             shellHook = ''
-              nvim_version=$(nvim --version)
-              echo "nvim version: $nvim_version"
             '';
           };
         };
