@@ -18,6 +18,9 @@
         path = ./rust;
         description = "Rust development environment";
       };
+      neovim = {
+        path = ./neovim;
+        description = "Neovim to learn vim using vimtutor";
     };
   };
 }
