@@ -2,13 +2,13 @@
   description = "Nix flake dev environments";
 
   outputs = { self }: {
-    templates = rec {
-      
+    templates = {
+
       graphite = {
         path = ./dev-tools;
-        description = "Development tools common to using ";
+        description = "Development tools common to using graphite, git, etc.";
       };
-      
+
       pnpm = {
         path = ./pnpm;
         description = "Nodejs development environment for only pnpm";
@@ -18,9 +18,6 @@
         path = ./rust;
         description = "Rust development environment";
       };
-      neovim = {
-        path = ./neovim;
-        description = "Neovim to learn vim using vimtutor";
     };
   };
 }
