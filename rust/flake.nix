@@ -26,11 +26,19 @@
         # Use the specific version of the Rust toolchain specified by the toolchain file
         localRust = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
 
+        # cargo subcommands to include in the development environment
+        ## cargo-release is not included, use CI/CD instead
+        cargoSubCommands = with pkgs; [
+          cargo-audit
+          cargo-edit
+          cargo-watch
+        ];
+
       in {
         devShells = {
           default = pkgs.mkShell {
             # Packages included in the environment
-            buildInputs = [ localRust ];
+            buildInputs = [ localRust ] ++ cargoSubCommands;
 
             # Run when the shell is started up
             shellHook = ''
